@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RestaurentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,6 +34,16 @@ class Restaurent
      * @ORM\JoinColumn(nullable=false)
      */
     private $city;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ImageRestaurent::class, mappedBy="restaurent", orphanRemoval=true)
+     */
+    private $imagesRestaurent;
+
+    public function __construct()
+    {
+        $this->imagesRestaurent = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -70,6 +82,36 @@ class Restaurent
     public function setCity(?City $city): self
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ImageRestaurent>
+     */
+    public function getImagesRestaurent(): Collection
+    {
+        return $this->imagesRestaurent;
+    }
+
+    public function addImagesRestaurent(ImageRestaurent $imagesRestaurent): self
+    {
+        if (!$this->imagesRestaurent->contains($imagesRestaurent)) {
+            $this->imagesRestaurent[] = $imagesRestaurent;
+            $imagesRestaurent->setRestaurent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImagesRestaurent(ImageRestaurent $imagesRestaurent): self
+    {
+        if ($this->imagesRestaurent->removeElement($imagesRestaurent)) {
+            // set the owning side to null (unless already changed)
+            if ($imagesRestaurent->getRestaurent() === $this) {
+                $imagesRestaurent->setRestaurent(null);
+            }
+        }
 
         return $this;
     }
