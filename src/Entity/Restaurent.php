@@ -40,9 +40,15 @@ class Restaurent
      */
     private $imagesRestaurent;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Avis::class, mappedBy="restaurent", orphanRemoval=true)
+     */
+    private $avis;
+
     public function __construct()
     {
         $this->imagesRestaurent = new ArrayCollection();
+        $this->avis = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -110,6 +116,36 @@ class Restaurent
             // set the owning side to null (unless already changed)
             if ($imagesRestaurent->getRestaurent() === $this) {
                 $imagesRestaurent->setRestaurent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Avis>
+     */
+    public function getAvis(): Collection
+    {
+        return $this->avis;
+    }
+
+    public function addAvi(Avis $avi): self
+    {
+        if (!$this->avis->contains($avi)) {
+            $this->avis[] = $avi;
+            $avi->setRestaurent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvi(Avis $avi): self
+    {
+        if ($this->avis->removeElement($avi)) {
+            // set the owning side to null (unless already changed)
+            if ($avi->getRestaurent() === $this) {
+                $avi->setRestaurent(null);
             }
         }
 

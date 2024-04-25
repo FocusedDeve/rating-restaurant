@@ -27,6 +27,12 @@ class Avis
      */
     private $rating;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Restaurent::class, inversedBy="avis")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $restaurent;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +58,18 @@ class Avis
     public function setRating(int $rating): self
     {
         $this->rating = $rating;
+
+        return $this;
+    }
+
+    public function getRestaurent(): ?Restaurent
+    {
+        return $this->restaurent;
+    }
+
+    public function setRestaurent(?Restaurent $restaurent): self
+    {
+        $this->restaurent = $restaurent;
 
         return $this;
     }
