@@ -7,6 +7,7 @@
 /public/bundles/
 /var/
 /vendor/
+/.idea/
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
@@ -14,7 +15,10 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
-
+/.idea/notaresto.iml
+/.idea/vcs.xml
+/.idea/modules.xml
+/.idea/misc.xml
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
