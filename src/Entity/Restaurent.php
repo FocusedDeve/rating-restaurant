@@ -51,7 +51,9 @@ class Restaurent
     private $createdAt;
 
     public function __construct()
+
     {
+        $this->setCreatedAt(new \DateTime());
         $this->imagesRestaurent = new ArrayCollection();
         $this->avis = new ArrayCollection();
     }
