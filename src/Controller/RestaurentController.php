@@ -21,9 +21,9 @@ class RestaurentController extends AbstractController
     /**
      * Affiche un restaurant
      * @Route("/restaurant/{restaurant}", name="restaurant_show", methods={"GET"})
-     * @param Restaurant $restaurant
+     * @param Restaurent $restaurent
      */
-    public function show(Restaurant $restaurant)
+    public function show(Restaurent $restaurent)
     {
     }
 
@@ -47,18 +47,18 @@ class RestaurentController extends AbstractController
      * Affiche le formulaire d'édition d'un restaurant (GET)
      * Traite le formulaire d'édition d'un restaurant (POST)
      * @Route("/restaurant/{restaurant}/edit", name="restaurant_edit", methods={"GET", "POST"})
-     * @param Restaurant $restaurant
+     * @param Restaurent $restaurent
      */
-    public function edit(Restaurant $restaurant)
+    public function edit(Restaurent $restaurent)
     {
     }
 
     /**
      * Supprime un restaurant
      * @Route("/restaurant/{restaurant}", name="restaurant_delete", methods={"DELETE"})
-     * @param Restaurant $restaurant
+     * @param Restaurent $restaurent
      */
-    public function delete(Restaurant $restaurant)
+    public function delete(Restaurent $restaurent)
     {
     }
 }
