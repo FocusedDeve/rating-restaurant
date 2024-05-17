@@ -7,8 +7,8 @@ use App\Repository\RestaurentRepository;
 use App\Repository\AvisRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
-//use Doctrine\persistence\src\Persistence\ObjectManager;
+//use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
 class AvisFixtures extends Fixture implements DependentFixtureInterface
