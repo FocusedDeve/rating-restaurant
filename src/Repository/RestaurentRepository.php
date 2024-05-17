@@ -24,6 +24,7 @@ class RestaurentRepository extends ServiceEntityRepository
     }
 
     public function findLastTenElements() {
+        
         return $this->createQueryBuilder('r')
             ->orderBy('r.createdAt', 'DESC')
             ->setMaxResults(10)
@@ -31,7 +32,7 @@ class RestaurentRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
-    
+
     /**
      * @throws ORMException
      * @throws OptimisticLockException

@@ -7,6 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query\Expr\Join;
 
 /**
  * @extends ServiceEntityRepository<Avis>
@@ -21,6 +22,19 @@ class AvisRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Avis::class);
+    }
+
+    public function findBestTenRatings() {
+
+        return $this->createQueryBuilder('r')
+            ->select('restaurant.id as restaurantId')
+            ->innerJoin('r.restaurant', 'restaurant')
+            ->groupBy('restaurant')
+            ->orderBy('AVG(r.rating)', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     /**
