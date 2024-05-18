@@ -6,6 +6,7 @@ use App\Entity\Restaurent;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class RestaurentController extends AbstractController
@@ -31,11 +32,16 @@ class RestaurentController extends AbstractController
     }
     /**
      * Affiche un restaurant
-     * @Route("/restaurant/{restaurant}", name="restaurant_show", methods={"GET"})
-     * @param Restaurent $restaurent
+    * @Route("/restaurant/{restaurant}", name="restaurant_show",
+    *  methods={"GET"}, requirements={"restaurant"="\d+"})    
+  * @param Restaurent $restaurent
+   * @return Response
      */
     public function show(Restaurent $restaurent)
     {
+        return $this->render('restaurant/show.html.twig', [
+            'restaurant' => $restaurant
+        ]);
     }
 
     /**
@@ -44,6 +50,7 @@ class RestaurentController extends AbstractController
      */
     public function new()
     {
+        return $this->render('restaurant/form.html.twig');
     }
 
     /**
