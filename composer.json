@@ -11,6 +11,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.0",
         "fzaninotto/faker": "1.9",
+        "knplabs/knp-paginator-bundle": "5.1",
         "phpdocumentor/reflection-docblock": "^5.4",
         "psr/cache": "^1.0",
         "sensio/framework-extra-bundle": "^5.1",

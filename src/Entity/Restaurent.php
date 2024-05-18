@@ -182,6 +182,10 @@ class Restaurent
             $total++;
         }
 
-        return $sum/$total;
+        if ($total > 0) {
+            return $sum/$total;
+        }
+
+        return 0;
     }
 }
