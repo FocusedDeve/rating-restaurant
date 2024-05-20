@@ -1,22 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des restaurants{% endblock %}
+{% block title %}Liste des restaurents{% endblock %}
 
 {% block body %}
     <div class="container mt-3">
         <div class="row">
             <div class="col-4">
-                <h2>{{ restaurant.name }}</h2>
+                <h2>{{ restaurent.name }}</h2>
                 <ul>
                     <li>
-                        <strong>Localité:</strong> {{ restaurant.city.zipcode }} {{ restaurant.city.name }}
+                        <strong>Localité:</strong> {{ restaurent.city.zipcode }} {{ restaurent.city.name }}
                     </li>
                     <li>
-                        <strong>Note moyenne :</strong> {{ restaurant.averageRating | number_format(2, ',') }}
+                        <strong>Note moyenne :</strong> {{ restaurent.averageRating | number_format(2, ',') }}
                     </li>
                 </ul>
                 <small>
-                    {{ restaurant.description }}
+                    {{ restaurent.description }}
                 </small>
                 <p>
                     <img src="https://picsum.photos/id/{{ random(1,1000) }}/800/600" alt="" width="30%" class="mb-1" data-toggle="modal" data-target="#exampleModal">
@@ -46,12 +46,12 @@
 
             <div class="col-8">
 
-                <h2>Les avis sur ce restaurant</h2>
+                <h2>Les avis sur ce restaurent</h2>
                 <hr>
 
                 <div class="card mb-2">
                     <div class="card-header">
-                        Rédigez un avis sur ce restaurant !
+                        Rédigez un avis sur ce restaurent !
                     </div>
                     <div class="card-body">
                         <form action="">
@@ -69,13 +69,13 @@
                     </div>
                 </div>
 
-                {% for review in restaurant.reviews %}
+                {% for avis in restaurent.aviss %}
                     <div class="card mb-2">
                         <div class="card-header">
-                            Rédigé par John Doe ({{ review.rating }}/5)
+                            Rédigé par John Doe ({{ avis.rating }}/5)
                         </div>
                         <div class="card-body">
-                            {{ review.message }}
+                            {{ avis.message }}
                         </div>
                         <div class="card-footer">
                             <form action="">

@@ -18,14 +18,14 @@ class AppController extends AbstractController
     public function index()
     {
 
-        $tenBestRestaurantsId = $this->getDoctrine()->getRepository(Avis::class)->findBestTenRatings();
+        $tenBestrestaurentsId = $this->getDoctrine()->getRepository(Avis::class)->findBestTenRatings();
 
-        $tenBestRestaurants = array_map(function($data) {
-            return $this->getDoctrine()->getRepository(Restaurent::class)->find($data['restaurantId']);
-        }, $tenBestRestaurantsId);
+        $tenBestrestaurents = array_map(function($data) {
+            return $this->getDoctrine()->getRepository(Restaurent::class)->find($data['restaurentId']);
+        }, $tenBestrestaurentsId);
 
         return $this->render('app/index.html.twig', [
-             'restaurants' => $tenBestRestaurants,
+             'restaurents' => $tenBestrestaurents,
         ]);
     }
     
@@ -47,16 +47,16 @@ class AppController extends AbstractController
         // Si une ville est trouvée
         if ($city) {
 
-            $data = $city->getRestaurants();
+            $data = $city->getrestaurents();
 
-            $restaurants = $paginator->paginate(
+            $restaurents = $paginator->paginate(
                 $data,
                 $request->query->getInt('page', 1),
                 50
             );
 
-            return $this->render('restaurant/index.html.twig', [
-                'restaurants' => $restaurants,
+            return $this->render('restaurent/index.html.twig', [
+                'restaurents' => $restaurents,
             ]);
         }
 

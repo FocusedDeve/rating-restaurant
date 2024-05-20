@@ -27,9 +27,9 @@ class AvisRepository extends ServiceEntityRepository
     public function findBestTenRatings() {
 
         return $this->createQueryBuilder('r')
-            ->select('restaurant.id as restaurantId')
-            ->innerJoin('r.restaurant', 'restaurant')
-            ->groupBy('restaurant')
+            ->select('restaurent.id as restaurentId')
+            ->innerJoin('r.restaurent', 'restaurent')
+            ->groupBy('restaurent')
             ->orderBy('AVG(r.rating)', 'DESC')
             ->setMaxResults(10)
             ->getQuery()

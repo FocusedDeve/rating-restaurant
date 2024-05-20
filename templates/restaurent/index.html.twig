@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des restaurants{% endblock %}
+{% block title %}Liste des restaurents{% endblock %}
 
 {% block body %}
 <div class="container mt-3">
@@ -12,7 +12,7 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Le restaurant</th>
+                        <th>Le restaurent</th>
                         <th>Localité</th>
                         <th>Note</th>
                         <th></th>
@@ -21,17 +21,17 @@
 
                     <tbody>
 
-                    {% for restaurant in restaurants %}
+                    {% for restaurent in restaurents %}
                         <tr>
-                            <td>{{ restaurant.id }}</td>
+                            <td>{{ restaurent.id }}</td>
                             <td>
-                                {{ restaurant.name }}
-                                <small>{{ restaurant.description }}</small>
+                                {{ restaurent.name }}
+                                <small>{{ restaurent.description }}</small>
                             </td>
-                            <td>{{ restaurant.city.zipcode }} {{ restaurant.city.name }}</td>
-                            <td>{{ restaurant.averageRating | number_format(2, ',') }}</td>
+                            <td>{{ restaurent.city.zipcode }} {{ restaurent.city.name }}</td>
+                            <td>{{ restaurent.averageRating | number_format(2, ',') }}</td>
                             <td>
-                                <a href="{{ path("restaurant_show", {restaurant: restaurant.id}) }}">Voir</a>
+                                <a href="{{ path("restaurent_show", {restaurent: restaurent.id}) }}">Voir</a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -40,7 +40,7 @@
 
                 </table>
 
-                {{ knp_pagination_render(restaurants) }}
+                {{ knp_pagination_render(restaurents) }}
 
             </div>
         </div>

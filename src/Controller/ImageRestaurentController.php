@@ -10,7 +10,7 @@ class ImageRestaurentController extends AbstractController
 {
    
     /**
-     * @Route("/restaurants/pictures", name="restaurant_picture_index")
+     * @Route("/restaurents/pictures", name="restaurent_picture_index")
      */
     public function index(): Response
     {

@@ -12,59 +12,59 @@ use Symfony\Component\Routing\Annotation\Route;
 class RestaurentController extends AbstractController
 {
     /**
-     * Affiche la liste des restaurants
-     * @Route("/restaurants", name="restaurant_index", methods={"GET"})
+     * Affiche la liste des restaurents
+     * @Route("/restaurents", name="restaurent_index", methods={"GET"})
      */
     public function index(Request $request, PaginatorInterface $paginator)
     {
 
-        $data = $this->getDoctrine()->getRepository(Restaurant::class)->findAll();
+        $data = $this->getDoctrine()->getRepository(restaurent::class)->findAll();
 
-        $restaurants = $paginator->paginate(
+        $restaurents = $paginator->paginate(
             $data,
             $request->query->getInt('page', 1),
             50
         );
 
         return $this->render('restaurent/index.html.twig', [
-           'restaurants' => $restaurants,
+           'restaurents' => $restaurents,
         ]);
     }
     /**
-     * Affiche un restaurant
-    * @Route("/restaurant/{restaurant}", name="restaurant_show",
-    *  methods={"GET"}, requirements={"restaurant"="\d+"})    
+     * Affiche un restaurent
+    * @Route("/restaurent/{restaurent}", name="restaurent_show",
+    *  methods={"GET"}, requirements={"restaurent"="\d+"})    
   * @param Restaurent $restaurent
    * @return Response
      */
     public function show(Restaurent $restaurent)
     {
-        return $this->render('restaurant/show.html.twig', [
-            'restaurant' => $restaurant
+        return $this->render('restaurent/show.html.twig', [
+            'restaurent' => $restaurent
         ]);
     }
 
     /**
-     * Affiche le formulaire de création de restaurant
-     * @Route("/restaurant/new", name="restaurant_new", methods={"GET"})
+     * Affiche le formulaire de création de restaurent
+     * @Route("/restaurent/new", name="restaurent_new", methods={"GET"})
      */
     public function new()
     {
-        return $this->render('restaurant/form.html.twig');
+        return $this->render('restaurent/form.html.twig');
     }
 
     /**
-     * Traite la requête d'un formulaire de création de restaurant
-     * @Route("/restaurant", name="restaurant_create", methods={"POST"})
+     * Traite la requête d'un formulaire de création de restaurent
+     * @Route("/restaurent", name="restaurent_create", methods={"POST"})
      */
     public function create()
     {
     }
 
     /**
-     * Affiche le formulaire d'édition d'un restaurant (GET)
-     * Traite le formulaire d'édition d'un restaurant (POST)
-     * @Route("/restaurant/{restaurant}/edit", name="restaurant_edit", methods={"GET", "POST"})
+     * Affiche le formulaire d'édition d'un restaurent (GET)
+     * Traite le formulaire d'édition d'un restaurent (POST)
+     * @Route("/restaurent/{restaurent}/edit", name="restaurent_edit", methods={"GET", "POST"})
      * @param Restaurent $restaurent
      */
     public function edit(Restaurent $restaurent)
@@ -72,8 +72,8 @@ class RestaurentController extends AbstractController
     }
 
     /**
-     * Supprime un restaurant
-     * @Route("/restaurant/{restaurant}", name="restaurant_delete", methods={"DELETE"})
+     * Supprime un restaurent
+     * @Route("/restaurent/{restaurent}", name="restaurent_delete", methods={"DELETE"})
      * @param Restaurent $restaurent
      */
     public function delete(Restaurent $restaurent)

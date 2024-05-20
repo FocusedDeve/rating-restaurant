@@ -5,19 +5,26 @@ namespace App\DataFixtures;
 use App\Entity\Avis;
 use App\Repository\RestaurentRepository;
 use App\Repository\AvisRepository;
+use App\Repository\UserRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager; // Utilisez le nouveau namespace
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Faker\Factory;
 
 class AvisFixtures extends Fixture implements DependentFixtureInterface
 {
     private $restaurentRepository;
-    private $reviewRepository;
+    private $avisRepository;
+    private $userRepository;
 
-    public function __construct(RestaurentRepository $restaurentRepository, AvisRepository $reviewRepository) {
+    public function __construct(RestaurentRepository $restaurentRepository,
+                                AvisRepository $avisRepository,
+                                UserRepository $userRepository)
+     {
         $this->restaurentRepository = $restaurentRepository;
-        $this->reviewRepository = $reviewRepository;
+        $this->avisRepository = $avisRepository;
+        $this->userRepository = $userRepository;
     }
 
     public function load(ObjectManager $manager)
@@ -26,14 +33,15 @@ class AvisFixtures extends Fixture implements DependentFixtureInterface
         $faker = Factory::create('fr_FR');
 
         /**
-         * On créée 7000 reviews initiales
+         * On créée 7000 aviss initiales
          */
         for ($i=0; $i<7000; $i++) {
-            $review = new Avis();
-            $review->setMessage( $faker->text(800) );
-            $review->setRating( rand(0,5) );
-            $review->setRestaurent( $this->restaurentRepository->find(rand(1, 1000)) );
-            $manager->persist($review);
+            $avis = new Avis();
+            $avis->setMessage( $faker->text(800) );
+            $avis->setRating( rand(0,5) );
+            $avis->setRestaurent( $this->restaurentRepository->find(rand(1, 1000)) );
+            $avis->setUser( $this->userRepository->findOneBy(["email" => "client@notaresto.com"]) );
+            $manager->persist($avis);
         }
 
         /**
@@ -43,15 +51,15 @@ class AvisFixtures extends Fixture implements DependentFixtureInterface
 
 
         /**
-         * On créée 3000 reviews enfants (dont le parent est une des review initiales)
+         * On créée 3000 aviss enfants (dont le parent est une des avis initiales)
          */
         for ($i=0; $i<3000; $i++) {
-            $review = new Avis();
-            $review->setMessage( $faker->text(800) );
-            $review->setRating( rand(0,5) );
-            $review->setParent( $this->reviewRepository->find(rand(1, 7000)) ); // On cherche un ID entre 1 et 7000 (un commentaire initial)
-            $review->setRestaurent( $review->getParent()->getRestaurent() ); // On récupère le restaurant de la review parente
-            $manager->persist($review);
+            $avis = new Avis();
+            $avis->setMessage( $faker->text(800) );
+            $avis->setParent( $this->avisRepository->find(rand(1, 7000)) ); // On cherche un ID entre 1 et 7000 (un commentaire initial)
+            $avis->setRestaurent( $avis->getParent()->getRestaurent() ); // On récupère le restaurent de la avis parente
+            $avis->setUser( $this->userRepository->findOneBy(["email" => "restaurateur@notaresto.com"]) );
+            $manager->persist($avis);
 
         }
 

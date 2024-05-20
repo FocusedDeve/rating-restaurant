@@ -50,6 +50,11 @@ class Restaurent
      */
     private $createdAt;
 
+     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="restaurents")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
     public function __construct()
 
     {
@@ -177,8 +182,8 @@ class Restaurent
         $sum = 0;
         $total = 0;
 
-        foreach($this->getReviews() as $review) {
-            $sum += $review->getRating();
+        foreach($this->getaviss() as $avis) {
+            $sum += $avis->getRating();
             $total++;
         }
 
@@ -187,5 +192,17 @@ class Restaurent
         }
 
         return 0;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }
