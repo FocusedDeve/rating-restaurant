@@ -9,7 +9,7 @@
                 <h2>{{ restaurent.name }}</h2>
                 <ul>
                     <li>
-                        <strong>Localité:</strong> {{ restaurent.city.zipcode }} {{ restaurent.city.name }}
+                        <strong>Localité:</strong> {{ restaurent.city.codePostal }} {{ restaurent.city.name }}
                     </li>
                     <li>
                         <strong>Note moyenne :</strong> {{ restaurent.averageRating | number_format(2, ',') }}

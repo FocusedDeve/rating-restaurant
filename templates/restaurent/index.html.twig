@@ -28,7 +28,7 @@
                                 {{ restaurent.name }}
                                 <small>{{ restaurent.description }}</small>
                             </td>
-                            <td>{{ restaurent.city.zipcode }} {{ restaurent.city.name }}</td>
+                            <td>{{ restaurent.city.codePostal }} {{ restaurent.city.name }}</td>
                             <td>{{ restaurent.averageRating | number_format(2, ',') }}</td>
                             <td>
                                 <a href="{{ path("restaurent_show", {restaurent: restaurent.id}) }}">Voir</a>

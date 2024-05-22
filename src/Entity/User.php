@@ -208,4 +208,8 @@ class User implements UserInterface
 
         return $this;
     }
+    public function __toString(): string
+    {
+        return $this->email; // ou toute autre propriété que vous souhaitez utiliser comme représentation en chaîne
+    }
 }

@@ -36,12 +36,12 @@ class AppController extends AbstractController
      */
     public function search(Request $request, PaginatorInterface $paginator) {
 
-        // On récupère l'input de recherche du formulaire, le name=zipcode
-        $searchZipcode = $request->query->get('zipcode');
+        // On récupère l'input de recherche du formulaire, le name=codePostal
+        $searchcodePostal = $request->query->get('codePostal');
 
 
         // On recherche une ville par son code postal
-        $city = $this->getDoctrine()->getRepository(City::class)->findOneBy(["zipcode" => $searchZipcode]);
+        $city = $this->getDoctrine()->getRepository(City::class)->findOneBy(["codePostal" => $searchcodePostal]);
 
 
         // Si une ville est trouvée

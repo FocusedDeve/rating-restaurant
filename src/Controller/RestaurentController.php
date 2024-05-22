@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Restaurent;
+use App\Form\RestaurentType;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,13 +46,31 @@ class RestaurentController extends AbstractController
     }
 
     /**
-     * Affiche le formulaire de création de restaurent
-     * @Route("/restaurent/new", name="restaurent_new", methods={"GET"})
+     * Affiche et gère le formulaire de création de restaurent
+     * @Route("/restaurent/new", name="restaurent_new", methods={"GET", "POST"})
      */
-    public function new()
+    public function new(Request $request)
     {
-        return $this->render('restaurent/form.html.twig');
-    }
+        $restaurent = new restaurent();
+
+        $form = $this->createForm(restaurentType::class, $restaurent);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $restaurent = $form->getData();
+            $restaurent->setUser($this->getUser());
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($restaurent);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('restaurent_index');
+        }
+
+        return $this->render('restaurent/form.html.twig', [
+            'form' => $form->createView()
+        ]);    }
 
     /**
      * Traite la requête d'un formulaire de création de restaurent
