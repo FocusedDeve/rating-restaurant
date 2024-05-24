@@ -23,6 +23,16 @@ class RestaurentRepository extends ServiceEntityRepository
         parent::__construct($registry, Restaurent::class);
     }
 
+    public function findLastTenElements() {
+        
+        return $this->createQueryBuilder('r')
+            ->orderBy('r.createdAt', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     /**
      * @throws ORMException
      * @throws OptimisticLockException

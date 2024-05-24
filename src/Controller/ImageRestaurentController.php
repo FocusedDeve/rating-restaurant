@@ -10,7 +10,7 @@ class ImageRestaurentController extends AbstractController
 {
    
     /**
-     * @Route("/restaurants/pictures", name="restaurant_picture_index")
+     * @Route("/restaurents/pictures", name="restaurent_picture_index")
      */
     public function index(): Response
     {
@@ -21,7 +21,7 @@ class ImageRestaurentController extends AbstractController
     
     /**
      * Affiche le détail d'une picture
-     * @Route("/picture/{picture}", name="picture_show", methods={"GET"})
+     * @Route("/picture/{picture}", name="picture_show", methods={"GET"}, requirements={"picture"="\d+"})     
      * @param ImageRestaurent $picture
      */
     public function show(ImageRestaurent $picture)

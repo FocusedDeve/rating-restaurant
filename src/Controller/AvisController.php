@@ -11,7 +11,7 @@ class AvisController extends AbstractController
 {
     /**
      * Affiche la liste de toutes les avis
-     * @Route("/reviews", name="review_index")
+     * @Route("/aviss", name="avis_index")
      */
     public function index(): Response
     {
@@ -21,26 +21,26 @@ class AvisController extends AbstractController
     }
 
      /**
-     * Affiche le détail d'une review
-     * @Route("/review/{review}", name="review_show", methods={"GET"})
-     * @param Review $review
+     * Affiche le détail d'une avis
+     * @Route("/avis/{avis}", name="avis_show", methods={"GET"}, requirements={"avis"="\d+"})
+     * @param Avis $avis
      */
     public function show(Avis $avis)
     {
     }
 
     /**
-     * Traite la requête d'un formulaire de création de review
-     * @Route("/review", name="review_create", methods={"POST"})
+     * Traite la requête d'un formulaire de création de avis
+     * @Route("/avis", name="avis_create", methods={"POST"})
      */
     public function create()
     {
     }
 
     /**
-     * Affiche le formulaire d'édition d'une review (GET)
-     * Traite le formulaire d'édition d'une review (POST)
-     * @Route("/review/{review}/edit", name="review_edit", methods={"GET", "POST"})
+     * Affiche le formulaire d'édition d'une avis (GET)
+     * Traite le formulaire d'édition d'une avis (POST)
+     * @Route("/avis/{avis}/edit", name="avis_edit", methods={"GET", "POST"})
      * @param Avis $avis
      */
     public function edit(Avis $avis)
@@ -48,11 +48,11 @@ class AvisController extends AbstractController
     }
 
     /**
-     * Supprime une review
-     * @Route("/review/{review}", name="review_delete", methods={"DELETE"})
-     * @param Review $review
+     * Supprime une avis
+     * @Route("/avis/{avis}", name="avis_delete", methods={"DELETE"})
+     * @param Avis $avis
      */
     public function delete(Avis $avis)
     {
-    }
+    }  
 }

@@ -4,8 +4,8 @@ namespace App\DataFixtures;
 
 use App\Entity\City;
 use Doctrine\Bundle\FixturesBundle\Fixture;
- use Doctrine\Common\Persistence\ObjectManager;
-//use Doctrine\persistence\src\Persistence\ObjectManager;
+//use Doctrine\Common\Persistence\ObjectManager; // Utilisez l'ancien namespace
+use Doctrine\Persistence\ObjectManager; // Utilisez le nouveau namespace
 use Faker\Factory;
 
 class CityFixtures extends Fixture
@@ -18,7 +18,7 @@ class CityFixtures extends Fixture
         for ($i = 0; $i < 1000; $i++) {
             $city = new City();
             $city->setName( $faker->city );
-            $city->setZipcode( $faker->postcode );
+            $city->setCodePostal( $faker->postcode );
 
             $manager->persist($city);
         }

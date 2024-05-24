@@ -50,6 +50,11 @@ class Restaurent
      */
     private $createdAt;
 
+     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="restaurents")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
     public function __construct()
 
     {
@@ -132,7 +137,7 @@ class Restaurent
     /**
      * @return Collection<int, Avis>
      */
-    public function getAvis(): Collection
+    public function getAviss(): Collection
     {
         return $this->avis;
     }
@@ -167,6 +172,36 @@ class Restaurent
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getAverageRating() : float
+    {
+
+        $sum = 0;
+        $total = 0;
+
+        foreach($this->getaviss() as $avis) {
+            $sum += $avis->getRating();
+            $total++;
+        }
+
+        if ($total > 0) {
+            return $sum/$total;
+        }
+
+        return 0;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

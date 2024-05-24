@@ -25,7 +25,7 @@ class Avis
     private $message;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $rating;
 
@@ -49,6 +49,13 @@ class Avis
      * @ORM\OneToMany(targetEntity="App\Entity\Avis", mappedBy="parent")
      */
     private $childs;
+
+     /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="aviss")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
 
     public function __construct()
     {
@@ -148,6 +155,18 @@ class Avis
                 $child->setParent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -10,11 +10,15 @@
         "doctrine/dbal": "^3",
         "doctrine/doctrine-bundle": "^2.7",
         "doctrine/doctrine-migrations-bundle": "^3.2",
-        "doctrine/orm": "^2.19",
+        "doctrine/orm": "^2.0",
+        "fzaninotto/faker": "1.9",
+        "knplabs/knp-paginator-bundle": "5.1",
         "phpdocumentor/reflection-docblock": "^5.4",
+        "psr/cache": "^1.0",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/asset": "4.4.*",
         "symfony/console": "4.4.*",
+        "symfony/doctrine-bridge": "4.4.*",
         "symfony/dotenv": "4.4.*",
         "symfony/expression-language": "4.4.*",
         "symfony/flex": "^1.3.1",
@@ -28,6 +32,8 @@
         "symfony/property-access": "4.4.*",
         "symfony/property-info": "4.4.*",
         "symfony/security-bundle": "4.4.*",
+        "symfony/security-csrf": "4.4.*",
+        "symfony/security-guard": "4.4.*",
         "symfony/serializer": "4.4.*",
         "symfony/translation": "4.4.*",
         "symfony/twig-bundle": "4.4.*",
@@ -38,8 +44,7 @@
         "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
-        "doctrine/doctrine-fixtures-bundle": "^3.3",
-        "fakerphp/faker": "^1.23",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "4.4.*",
         "symfony/css-selector": "4.4.*",
@@ -48,7 +53,7 @@
         "symfony/phpunit-bridge": "^7.0",
         "symfony/stopwatch": "4.4.*",
         "symfony/web-profiler-bundle": "4.4.*",
-        "symfony/web-server-bundle": "4.4.4"
+        "symfony/web-server-bundle": "4.4.*"
     },
     "config": {
         "allow-plugins": {

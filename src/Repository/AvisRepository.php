@@ -7,6 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\Query\Expr\Join;
 
 /**
  * @extends ServiceEntityRepository<Avis>
@@ -21,6 +22,19 @@ class AvisRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Avis::class);
+    }
+
+    public function findBestTenRatings() {
+
+        return $this->createQueryBuilder('r')
+            ->select('restaurent.id as restaurentId')
+            ->innerJoin('r.restaurent', 'restaurent')
+            ->groupBy('restaurent')
+            ->orderBy('AVG(r.rating)', 'DESC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     /**
@@ -47,10 +61,10 @@ class AvisRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Avis[] Returns an array of Avis objects
-    //  */
-    /*
+     /**
+      * @return Avis[] Returns an array of Avis objects
+     */
+    
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('a')
@@ -62,9 +76,9 @@ class AvisRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+    
 
-    /*
+    
     public function findOneBySomeField($value): ?Avis
     {
         return $this->createQueryBuilder('a')
@@ -74,5 +88,5 @@ class AvisRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+    
 }
