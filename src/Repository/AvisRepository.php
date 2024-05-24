@@ -61,10 +61,10 @@ class AvisRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Avis[] Returns an array of Avis objects
-    //  */
-    /*
+     /**
+      * @return Avis[] Returns an array of Avis objects
+     */
+    
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('a')
@@ -76,9 +76,9 @@ class AvisRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+    
 
-    /*
+    
     public function findOneBySomeField($value): ?Avis
     {
         return $this->createQueryBuilder('a')
@@ -88,5 +88,5 @@ class AvisRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    */
+    
 }

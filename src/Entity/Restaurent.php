@@ -137,7 +137,7 @@ class Restaurent
     /**
      * @return Collection<int, Avis>
      */
-    public function getAvis(): Collection
+    public function getAviss(): Collection
     {
         return $this->avis;
     }

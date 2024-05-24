@@ -51,10 +51,11 @@ class Avis
     private $childs;
 
      /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="avis")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="aviss")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
 
     public function __construct()
     {
